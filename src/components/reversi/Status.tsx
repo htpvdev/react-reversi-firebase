@@ -1,10 +1,11 @@
 import React from "react"
+import { Setting } from "../common/reversiTypes"
 
-export default class Status extends React.Component {
-  render() {
-    return (
-      <>
-      </>
-    )
-  }
+export default function Status(props: {setting: Setting}) {
+
+  return (
+    <div>
+      {props.setting.player}
+    </div>
+  )
 }
