@@ -19,6 +19,11 @@ ESLintのローカルインストール
 ESLint セットアップ
 - `npx eslint --init`
 - 以下のように質問が出てくる。それぞれこのように回答した。
+- 参考
+  - https://zenn.dev/jpn_asane/articles/d7f44682b74fdc
+  - https://zenn.dev/ro_komatsuna/articles/eslint_setup
+  - https://saki-htr.hatenablog.com/entry/2021/08/26/145418#1-npmを使ってインストールする
+  - https://qiita.com/uhooi/items/f22b53b6e39228fc4826
 
 ```
 PS C:\work\react-reversi> npx eslint --init
@@ -39,3 +44,12 @@ eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-e
 √ Would you like to install them now with npm? · No / [Yes]
 Installing eslint-plugin-react@latest, @typescript-eslint/eslint-plugin@latest, @typescript-eslint/parser@latest
 ```
+
+SCSS導入方法
+- 以下のコマンドを順に実行
+  - `npm add node-sass`
+  - `npm i -s node sass`
+  - `npm i add node-sass`
+
+ルーティングをするためにreact-router-domというライブラリをインストールする
+- `npm i react-router-dom`
