@@ -56,3 +56,8 @@ SCSS導入方法
 
 Material-UIのインストール
 `npm install @mui/material @emotion/react @emotion/styled`
+
+ループで複数生成する要素に与えるkeyについて
+ - https://qiita.com/koba04/items/a4d23245d246c53cd49d
+ - https://dev.classmethod.jp/articles/avoiding-warningeach-child-in-a-list-should-have-a-unique-key-prop-in-react-apps-is-called-and-not-on-the-side-do-it-on-the-caller/
+
