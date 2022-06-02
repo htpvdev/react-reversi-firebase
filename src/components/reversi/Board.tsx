@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import './Board.scss'
-import { Field, FieldKey, Side } from "../common/reversiTypes"
+import { Field, FieldKey, Side } from '../common/reversiTypes';
 import { firstField } from '../common/reversiConst';
 import { ReversiAction } from "../../actions/reversiAction";
+import Piece from "./Piece";
 
 export default function Board(): JSX.Element {
 
@@ -25,31 +26,19 @@ export default function Board(): JSX.Element {
     return fieldInfo.field
   }
 
-  let putPiece! : () => void
+  let key!: FieldKey
 
-{/* <Piece onClick={(setField,field, y, x) => putPieceAction(field, y, x)} side={field['p'+y+x as FieldKey]} key={'p'+y+x} /> */}
   for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
-      putPiece = () => {
-        setField(putPieceAction({ ...field }, side, y, x))
-      }
+      key = 'p' + y + x as FieldKey
       pieceRow.push(
-        <td onClick={putPiece} key={'p'+y+x}>
-          <div>
-            <svg
-              width="50"
-              height="50"
-              viewBox="0 0 50 50"
-            >
-              <circle
-                className={field['p'+y+x as FieldKey]}
-                r="20"
-                cx="25"
-                cy="25"
-              ></circle>
-            </svg>
-          </div>
-        </td>
+        <Piece
+          onClick={() => {
+            setField(putPieceAction({ ...field }, side, y, x))
+          }}
+          side={field[key]}
+          key={key}
+        />
       )
     }
 
