@@ -4,6 +4,7 @@ import { Field, FieldKey, Side } from '../common/reversiTypes';
 import { firstField } from '../common/reversiConst';
 import { ReversiAction } from "../../actions/reversiAction";
 import Piece from "./Piece";
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
 export default function Board(): JSX.Element {
 
@@ -15,15 +16,28 @@ export default function Board(): JSX.Element {
 
   const action = new ReversiAction()
 
+  const [snackBarState, setSnackBarState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+    alertMessage: '',
+  });
+
+  const { vertical, horizontal, open, alertMessage } = snackBarState;
+
+  const snackBarAlert = (alertMessage: string) => {
+    setSnackBarState({ vertical: 'top', horizontal: 'center', open: true, alertMessage });
+  };
+
   const putPieceAction = (field: Field, side: Side, y: number, x: number) => {
     console.log(field, y, x)
     const fieldInfo = action.putPiece(field, side, y, x)
     if (fieldInfo.turnedPieceCount === 0) {
-      alert('ここにはおけません')
+      setSnackBarState({ vertical: 'top', horizontal: 'center', open: true, alertMessage: 'ここにはおけません' });
     } else {
       setSide(side!=='black'? 'black':'white')
+      setField(fieldInfo.field);
     }
-    return fieldInfo.field
   }
 
   let key!: FieldKey
@@ -34,7 +48,7 @@ export default function Board(): JSX.Element {
       pieceRow.push(
         <Piece
           onClick={() => {
-            setField(putPieceAction({ ...field }, side, y, x))
+            putPieceAction({ ...field }, side, y, x)
           }}
           side={field[key]}
           key={key}
@@ -47,11 +61,22 @@ export default function Board(): JSX.Element {
   }
 
   return (
-    <table>
-      <tbody>
-        {pieceRowList}
-      </tbody>
-    </table>
+    <>
+      <div>{side}のターン</div>
+      <table>
+        <tbody>
+          {pieceRowList}
+        </tbody>
+      </table>
+
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal } as SnackbarOrigin}
+        open={open}
+        onClose={() => setSnackBarState({ ...snackBarState, open: false})}
+        message={alertMessage}
+        key={vertical + horizontal}
+      />
+    </>
   )
 }
 
