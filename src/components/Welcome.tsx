@@ -16,16 +16,6 @@ export default function Welcome() {
 
   return (
     <>
-      <div className="App">
-      <h1>Learn useEffect</h1>
-      <div>
-        {
-          posts.map((post: {id: number, title: string}) => (
-            <div key={post.id}>{post.title}</div>
-          ))
-        }
-      </div>
-    </div>
       <h1>Welcome to Game Center!</h1>
       <Button
         variant="contained"
@@ -33,6 +23,17 @@ export default function Welcome() {
         component={Link}
         to="/reversi"
       >Reversi</Button>
+
+      <div className="App">
+        <h1>Learn useEffect</h1>
+        <div>
+          {
+            posts.map((post: {id: number, title: string}) => (
+              <div key={post.id}>{post.title}</div>
+            ))
+          }
+        </div>
+      </div>
     </>
   )
 }

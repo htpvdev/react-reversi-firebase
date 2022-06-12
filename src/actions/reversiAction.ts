@@ -1,4 +1,4 @@
-import { Side, FieldInfo, Field, PieceSide, FieldKey } from '../components/common/reversiTypes';
+import { Side, FieldInfo, Field, PieceSide, FieldKey, PieceCount } from '../components/common/reversiTypes';
 
 
 export class ReversiAction {
@@ -55,5 +55,20 @@ export class ReversiAction {
     }
     return { field, turnedPieceCount }
 
+  }
+
+  public countPieces(field: Field): PieceCount {
+    const res: PieceCount = {black: 0, white: 0}
+
+    for (const key of Object.keys(field)) {
+      if (field[key as FieldKey] === 'black') {
+        console.log(`side === 'black'`)
+        res.black += 1
+      } else if (field[key as FieldKey] === 'white') {
+        console.log(`side === 'white'`)
+        res.white += 1
+      }
+    }
+    return res
   }
 }

@@ -1,15 +1,19 @@
 import React, { useState } from "react"
 import './Board.scss'
-import { Field, FieldKey, Side } from '../common/reversiTypes';
+import { Field, FieldKey, Setting, Side } from '../common/reversiTypes';
 import { firstField } from '../common/reversiConst';
 import { ReversiAction } from "../../actions/reversiAction";
 import Piece from "./Piece";
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
-export default function Board(): JSX.Element {
+interface BoardProps {
+  setting: Setting,
+  setSetting: (setting: Setting) => void
+}
+
+const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
 
   const [field, setField] = useState<Field>(firstField)
-  const [side, setSide] = useState<Side>('black')
 
   const pieceRowList: Array<JSX.Element> = []
   let pieceRow: Array<JSX.Element> = []
@@ -25,17 +29,22 @@ export default function Board(): JSX.Element {
 
   const { vertical, horizontal, open, alertMessage } = snackBarState;
 
-  const snackBarAlert = (alertMessage: string) => {
-    setSnackBarState({ vertical: 'top', horizontal: 'center', open: true, alertMessage });
-  };
-
   const putPieceAction = (field: Field, side: Side, y: number, x: number) => {
     console.log(field, y, x)
     const fieldInfo = action.putPiece(field, side, y, x)
     if (fieldInfo.turnedPieceCount === 0) {
-      setSnackBarState({ vertical: 'top', horizontal: 'center', open: true, alertMessage: 'ここにはおけません' });
+      setSnackBarState({ ...snackBarState, open: true, alertMessage: 'ここにはおけません' });
     } else {
-      setSide(side!=='black'? 'black':'white')
+      let { player } = setting
+      player!=='black'? player = 'black': player = 'white'
+
+      const {black, white} = setting
+      const pieceCount = action.countPieces(fieldInfo.field)
+      black.piece = pieceCount.black
+      white.piece = pieceCount.white
+      console.log(black, white)
+
+      setSetting({...setting, player, black, white})
       setField(fieldInfo.field);
     }
   }
@@ -48,7 +57,7 @@ export default function Board(): JSX.Element {
       pieceRow.push(
         <Piece
           onClick={() => {
-            putPieceAction({ ...field }, side, y, x)
+            putPieceAction({ ...field }, setting.player, y, x)
           }}
           side={field[key]}
           key={key}
@@ -62,7 +71,6 @@ export default function Board(): JSX.Element {
 
   return (
     <>
-      <div>{side}のターン</div>
       <table>
         <tbody>
           {pieceRowList}
@@ -80,3 +88,4 @@ export default function Board(): JSX.Element {
   )
 }
 
+export default Board

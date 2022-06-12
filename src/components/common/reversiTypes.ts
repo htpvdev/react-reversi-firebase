@@ -58,3 +58,9 @@ export interface FieldInfo {
   field: Field,
   turnedPieceCount: number,
 }
+
+/** */
+export interface PieceCount {
+  black: number,
+  white: number,
+}

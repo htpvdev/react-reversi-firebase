@@ -1,11 +1,16 @@
 import React from "react"
-import { Setting } from "../common/reversiTypes"
+import { sideText } from "../common/reversiConst";
+import { Setting } from '../common/reversiTypes';
 
-export default function Status(props: {setting: Setting}) {
+const Status: React.FC<{setting: Setting}> = ({setting}) => {
 
   return (
     <div>
-      {props.setting.player}
+      <li>{`${setting[setting.player].playerName} (${sideText[setting.player]})のターン`}</li>
+      <li>{`${sideText.black} : ${setting.black.piece}枚`}</li>
+      <li>{`${sideText.white} : ${setting.white.piece}枚`}</li>
     </div>
   )
 }
+
+export default Status

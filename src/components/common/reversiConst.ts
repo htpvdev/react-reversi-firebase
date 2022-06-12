@@ -15,6 +15,11 @@ export const firstField: Field = {
 export const firstSetting: Setting = {
   player: 'black',
   status: 'boot',
-  black: { type: 'player', playerName: '', piece: 2 },
-  white: { type: 'player', playerName: '', piece: 2 },
+  black: { type: 'player', playerName: 'プレイヤー1', piece: 2 },
+  white: { type: 'player', playerName: 'プレイヤー2', piece: 2 },
+}
+
+export const sideText = {
+  black: '黒',
+  white: '白',
 }
