@@ -30,7 +30,6 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
   const { vertical, horizontal, open, alertMessage } = snackBarState;
 
   const putPieceAction = (field: Field, side: Side, y: number, x: number) => {
-    console.log(field, y, x)
     const fieldInfo = action.putPiece(field, side, y, x)
     if (fieldInfo.turnedPieceCount === 0) {
       setSnackBarState({ ...snackBarState, open: true, alertMessage: 'ここにはおけません' });
@@ -42,7 +41,6 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
       const pieceCount = action.countPieces(fieldInfo.field)
       black.piece = pieceCount.black
       white.piece = pieceCount.white
-      console.log(black, white)
 
       setSetting({...setting, player, black, white})
       setField(fieldInfo.field);

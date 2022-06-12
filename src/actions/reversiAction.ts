@@ -62,10 +62,8 @@ export class ReversiAction {
 
     for (const key of Object.keys(field)) {
       if (field[key as FieldKey] === 'black') {
-        console.log(`side === 'black'`)
         res.black += 1
       } else if (field[key as FieldKey] === 'white') {
-        console.log(`side === 'white'`)
         res.white += 1
       }
     }

@@ -8,7 +8,6 @@ export function useField(newField: Field|null = null) {
   useEffect(() => {
     if (newField) {
       setField(newField)
-      console.log(newField)
     }
   })
 
