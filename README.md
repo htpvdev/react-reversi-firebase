@@ -1,9 +1,18 @@
 # Reactでオセロを作ろうの巻
 
-Angular で、一度オセロの制作をしました。
-⇒今度はReactで！
+Angular で、一度オセロの制作をしました。今度はReactで！
 
-- React + TypeScript , ESLint を使う！
+- フロントエンドはReact(TypeScript)、バックエンドはExpress(TypeScript)、コード評価ツールのESLintを使う！
+- プレイヤー同士の通信対戦(双方向通信)を実現するため、Socket.ioを使う！
+
+## 環境構築
+
+### client
+
+client/.envを作成して、client/.env.local.exampleの内容をすべてコピペする
+clientディレクトリに移動して、`npm i`を実行。
+
+また、VSCodeだと
 
 ## やったことメモ
 
@@ -64,6 +73,18 @@ Material-UIのインストール
 バックエンドサーバを作るため、一旦開発環境を整えた。
 その時、Reactアプリをブレークポイントを置いてデバッグできるように設定を追加。
 - (参考):https://zenn.dev/rhene/articles/setup-vscode-to-react-debug
+
+バックエンドサーバの作成
+1. `npm init -y`でpackage.jsonを作成(パッケージをインストールするために)
+2. backendディレクトリで、以下のパッケージをインストール
+  - `npm i typescript`
+  - `npm i @types/node`
+  - `npm i ts-node`
+  - `npm i express`
+
+(参考)
+- https://qiita.com/zaburo/items/69726cc42ef774990279
+- https://zenn.dev/chida/articles/882d9fb1d71fa1
 
 双方向通信用のライブラリsocket.ioとかの整備
 - socket.ioの、React側のインストール
