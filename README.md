@@ -61,7 +61,11 @@ Material-UIのインストール
  - https://qiita.com/koba04/items/a4d23245d246c53cd49d
  - https://dev.classmethod.jp/articles/avoiding-warningeach-child-in-a-list-should-have-a-unique-key-prop-in-react-apps-is-called-and-not-on-the-side-do-it-on-the-caller/
 
-双方向通信用のライブラリsocket.ioとかの整備
+バックエンドサーバを作るため、一旦開発環境を整えた。
+その時、Reactアプリをブレークポイントを置いてデバッグできるように設定を追加。
+- (参考):https://zenn.dev/rhene/articles/setup-vscode-to-react-debug
 
+双方向通信用のライブラリsocket.ioとかの整備
 - socket.ioの、React側のインストール
   - `npm i socket.io-client @types/node`
+
