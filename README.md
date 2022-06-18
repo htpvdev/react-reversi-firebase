@@ -5,14 +5,44 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 - フロントエンドはReact(TypeScript)、バックエンドはExpress(TypeScript)、コード評価ツールのESLintを使う！
 - プレイヤー同士の通信対戦(双方向通信)を実現するため、Socket.ioを使う！
 
-## 環境構築
+## 開発環境
+
+- nodeのバージョン: 18.3.0
+- npmのバージョン: 8.12.2
+
+### ローカルサーバ起動方法(2回目以降)
+
+フロントエンドサーバとバックエンドサーバの2つを起動する必要がある。
+
+1. clientディレクトリに移動して、`npm start`を実行する。
+2. その後、backendディレクトリに移動して、`npx ts-node app/App.ts`
+
+...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に起動できる。
+
+1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
+2. `Run Client and Backend`を選択するとすべてのサーバが起動する。
 
 ### client
 
-client/.envを作成して、client/.env.local.exampleの内容をすべてコピペする
+Reactフロントエンドサーバ。ユーザ向けの画面を表示する。http://localhost:3000
+
+#### 初回環境構築手順
+1. client/.envを作成して、client/.env.local.exampleの内容をすべてコピペする
+2. clientディレクトリに移動して、`npm i`を実行。
+
+また、VSCodeだとブレークポイントを置いたデバッグが使える。  
+1. まずは、clilent(react)サーバを起動する。
+2. Ctrl + Shift + D でデバッグタブを開き、client(Debug)の実行ボタンを押すと、デバッグサーバが起動する。
+
+  (clientの実行ボタンを押すことで、clientサーバを起動できる)
+
+### backend
+
+Expressバックエンドサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
+
+#### 初回環境構築手順
 clientディレクトリに移動して、`npm i`を実行。
 
-また、VSCodeだと
 
 ## やったことメモ
 
@@ -23,7 +53,7 @@ Reactのインストールやってくれるやつ(create-react-app)のインス
 - `npx create-react-app . --template typescript`
 
 ESLintのローカルインストール
-- `npm i eslint --save-dev`
+- `npm i eslint`
 
 ESLint セットアップ
 - `npx eslint --init`

@@ -1,49 +1,26 @@
 {
   "version": "2.0.0",
   "tasks": [
-    {
-      "label": "client-start",
-      "detail": "react-scripts start for debug",
-      "type": "npm",
-      "script": "start",
-      "isBackground": true,
-      "problemMatcher": [
-        {
-          "pattern": [
-            {
-              "regexp": ".",
-              "file": 1,
-              "line": 1,
-              "message": 1
-            }
-          ],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "^Starting.*$",
-            "endsPattern": "^Compiled.*$"
-          },
-        }
+    { /**  */
+      "label": "Run Client and Backend",
+      "type": "shell",
+      "command": "echo client and backend server serving...",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "serve-local-client",
+        "serve-local-backend"
       ],
-      "options": {
-        "cwd": "${workspaceFolder}/client",
-        "env": {
-          "BROWSER": "none"
-        }
-      }
+      "problemMatcher": []
     },
     {
-      "label": "terminate-client-start",
-      "command": "${input:terminate}",
+      "label": "Run Client",
       "type": "shell",
-      "problemMatcher": []
-    }
-  ],
-  "inputs": [
+      "command": "cd ${workspaceFolder}/client; npm start"
+    },
     {
-      "id": "terminate",
-      "type": "command",
-      "command": "workbench.action.tasks.terminate",
-      "args": "client-start"
+      "label": "Run Backend",
+      "type": "shell",
+      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts"
     }
   ]
 }

@@ -11,8 +11,8 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
     next();
 })
 
-app.listen(3000, () => {
-    console.log("Start on port 3000.")
+app.listen(4000, () => {
+    console.log("Start on port 4000.")
 })
 
 type User = {
@@ -29,5 +29,6 @@ const users: User[] = [
 
 //一覧取得
 app.get('/users', (req: express.Request, res: express.Response) => {
+    console.log('aaaaaaaaaaaaaaaaaaaaa')
     res.send(JSON.stringify(users))
 })

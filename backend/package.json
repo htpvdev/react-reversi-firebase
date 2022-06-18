@@ -15,5 +15,10 @@
   "volta": {
     "node": "18.3.0",
     "npm": "8.12.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0"
   }
 }

@@ -1,19 +1,24 @@
 {
   "configurations": [
-    { /** client(Debug mode) */
+    { /** client(Attach Debugger) */
+      "name": "client(Debug)",
       "type": "pwa-chrome",
       "request": "launch",
-      "name": "client(Debug)",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/client",
-      "preLaunchTask": "client-start",
-      "postDebugTask": "terminate-client-start",
     },
     { /** client */
-      "command": "cd ${workspaceFolder}/client; npm start",
       "name": "client",
-      "request": "launch",
       "type": "node-terminal",
+      "request": "launch",
+      "command": "cd ${workspaceFolder}/client; npm start",
+      "env": {}
+    },
+    { /** backend */
+      "name": "backend",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
       "env": {}
     }
   ]
