@@ -1,4 +1,11 @@
+// process.envを使うモジュールの先頭に必ず書く
+import * as config from './common/config'
+config.setDotenv()
+const { SERVER_PORT } = process.env
+
 import express from 'express'
+import routes from './routes'
+
 const app: express.Express = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -11,24 +18,10 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
     next();
 })
 
-app.listen(4000, () => {
-    console.log("Start on port 4000.")
-})
+// すべてのルーティングはroutes/index.tsに集約して管理する
+app.use('/', routes)
 
-type User = {
-    id: number
-    name: string
-    email: string
-};
-
-const users: User[] = [
-    { id: 1, name: "User1", email: "user1@test.local" },
-    { id: 2, name: "User2", email: "user2@test.local" },
-    { id: 3, name: "User3", email: "user3@test.local" }
-]
-
-//一覧取得
-app.get('/users', (req: express.Request, res: express.Response) => {
-    console.log('aaaaaaaaaaaaaaaaaaaaa')
-    res.send(JSON.stringify(users))
+// リクエスト待機状態を開始
+app.listen(SERVER_PORT, () => {
+    console.log(`Start on port ${SERVER_PORT}.`)
 })

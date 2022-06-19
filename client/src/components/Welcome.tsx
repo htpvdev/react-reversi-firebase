@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function Welcome() {
-  const [posts, setPosts] = React.useState([]);
+const { REACT_APP_BACKEND_URL } = process.env
 
-  const fetchPost = async () => {
-    const response = await fetch(
-      'https://jsonplaceholder.typicode.com/posts'
-    );
-    const posts = await response.json();
-    setPosts(posts);
-  };
-  fetchPost();
+export default function Welcome() {
+  const [apiTest, setApitest] = React.useState({});
+
+  useEffect(() => {
+    // useEffect自体ではasyncの関数を受け取れないので内部で関数を定義して呼び出す。
+    const fetchPost = async () => {
+      console.log(REACT_APP_BACKEND_URL as string + '/letsgogo')
+      const response = await fetch(REACT_APP_BACKEND_URL as string + '/letsgogo');
+      const responseJson = await response.json();
+      console.log(responseJson)
+      setApitest(responseJson);
+    };
+    fetchPost();
+}, []);
+
 
   return (
     <>
@@ -26,13 +32,7 @@ export default function Welcome() {
 
       <div className="App">
         <h1>Learn useEffect</h1>
-        <div>
-          {
-            posts.map((post: {id: number, title: string}) => (
-              <div key={post.id}>{post.title}</div>
-            ))
-          }
-        </div>
+        <div>{JSON.stringify(apiTest)}</div>
       </div>
     </>
   )

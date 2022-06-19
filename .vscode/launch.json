@@ -12,14 +12,12 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "cd ${workspaceFolder}/client; npm start",
-      "env": {}
     },
     { /** backend */
       "name": "backend",
       "type": "node-terminal",
       "request": "launch",
       "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
-      "env": {}
     }
   ]
 }

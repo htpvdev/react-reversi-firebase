@@ -1,14 +1,14 @@
 {
   "version": "2.0.0",
   "tasks": [
-    { /**  */
+    {
       "label": "Run Client and Backend",
       "type": "shell",
       "command": "echo client and backend server serving...",
       "dependsOrder": "parallel",
       "dependsOn": [
-        "serve-local-client",
-        "serve-local-backend"
+        "Run Client",
+        "Run Backend"
       ],
       "problemMatcher": []
     },
@@ -20,7 +20,8 @@
     {
       "label": "Run Backend",
       "type": "shell",
-      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts"
+      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
+      "problemMatcher": []
     }
   ]
 }

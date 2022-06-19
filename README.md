@@ -41,7 +41,8 @@ Reactフロントエンドサーバ。ユーザ向けの画面を表示する。
 Expressバックエンドサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
 
 #### 初回環境構築手順
-clientディレクトリに移動して、`npm i`を実行。
+1. backend/.envを作成して、backend/.env.local.exampleの内容をすべてコピペする
+2. backendディレクトリに移動して、`npm i`を実行。
 
 
 ## やったことメモ
@@ -120,3 +121,8 @@ Material-UIのインストール
 - socket.ioの、React側のインストール
   - `npm i socket.io-client @types/node`
 
+バックエンド側で、環境変数を使うためdotenvをインストール
+- `npm i dotenv`
+(参考)
+- https://zenn.dev/maztak/articles/00aa3fcc643550
+- また、Reactアプリで使う環境変数は、頭文字に`REACT_APP`とある必要がある

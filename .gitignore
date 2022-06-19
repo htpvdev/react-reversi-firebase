@@ -1,7 +1,11 @@
+# common
+.DS_Store
+node_modules
+.env
+
 # client
 
 # dependencies
-/client/node_modules
 /client/.pnp
 /client.pnp.js
 
@@ -10,9 +14,6 @@
 
 # production
 /client/build
-
-# config
-/client/.env
 
 # misc
 /client/.DS_Store
@@ -24,9 +25,3 @@
 /client/npm-debug.log*
 /client/yarn-debug.log*
 /client/yarn-error.log*
-
-# backend
-/backend/node_modules
-
-# another branch diff
-/node_modules
