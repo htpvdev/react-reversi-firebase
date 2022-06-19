@@ -31,19 +31,22 @@ Reactフロントエンドサーバ。ユーザ向けの画面を表示する。
 2. clientディレクトリに移動して、`npm i`を実行。
 
 また、VSCodeだとブレークポイントを置いたデバッグが使える。  
-1. まずは、clilent(react)サーバを起動する。
+1. まずは、clilent(react)サーバを**起動**する。
 2. Ctrl + Shift + D でデバッグタブを開き、client(Debug)の実行ボタンを押すと、デバッグサーバが起動する。
 
   (clientの実行ボタンを押すことで、clientサーバを起動できる)
 
 ### backend
 
-Expressバックエンドサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
+ExpressバックエンドAPIサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
 
 #### 初回環境構築手順
 1. backend/.envを作成して、backend/.env.local.exampleの内容をすべてコピペする
 2. backendディレクトリに移動して、`npm i`を実行。
 
+また、バックエンドも同様にブレークポイントでのデバッグができる。
+1. まずは、バックエンドサーバがすでに起動していれば**終了**する(clientとは手順が違うので注意)。
+2. Ctrl + Shift + D でデバッグタブを開き、backend(Debug)の実行ボタンを押すと、デバッグサーバが起動する。
 
 ## やったことメモ
 
@@ -123,6 +126,11 @@ Material-UIのインストール
 
 バックエンド側で、環境変数を使うためdotenvをインストール
 - `npm i dotenv`
-(参考)
-- https://zenn.dev/maztak/articles/00aa3fcc643550
-- また、Reactアプリで使う環境変数は、頭文字に`REACT_APP`とある必要がある
+- (参考)
+  - https://zenn.dev/maztak/articles/00aa3fcc643550
+  - また、Reactアプリで使う環境変数は、頭文字に`REACT_APP`とある必要がある
+
+バックエンド側で、sqlite3をインストール
+- `npm i @types/sqlite3`
+- (参考)
+  - (公式) https://github.com/TryGhost/node-sqlite3

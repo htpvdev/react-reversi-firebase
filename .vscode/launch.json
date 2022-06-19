@@ -7,17 +7,17 @@
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/client",
     },
+    { /** backend(Serve and Debug) */
+      "name": "backend(Debug)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
+    },
     { /** client */
       "name": "client",
       "type": "node-terminal",
       "request": "launch",
       "command": "cd ${workspaceFolder}/client; npm start",
-    },
-    { /** backend */
-      "name": "backend",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
     }
   ]
 }
