@@ -10,6 +10,24 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 - nodeのバージョン: 18.3.0
 - npmのバージョン: 8.12.2
 
+ローカル環境構築の要件
+1. 上記のnode.jsがインストールされており、PATHが通っていること(voltaを推奨します)
+2. Dockerがインストールされていること
+3. VSCodeで開発すること(自動タスクやデバッガなどを使う場合)
+
+#### 初回環境構築手順
+1. client/.envを作成して、client/.env.local.exampleの内容をすべてコピペする
+2. clientディレクトリに移動して、`npm ci`を実行。
+3. backend/.envを作成して、backend/.env.local.exampleの内容をすべてコピペする
+4. backendディレクトリに移動して、`npm ci`を実行。
+5. reversi-dbディレクトリに移動して、`docker compose up -d --build`を実行
+
+...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に環境構築できる
+
+1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
+2. `Build All Dev-Env for Windows`を選択すると環境構築が始まる(MacOSの場合は、`Build All Dev-Env for Mac`を選択する)。
+
+
 ### ローカルサーバ起動方法(2回目以降)
 
 フロントエンドサーバとバックエンドサーバの2つを起動する必要がある。
@@ -20,15 +38,13 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 ...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に起動できる。
 
 1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
-2. `Run Client and Backend`を選択するとすべてのサーバが起動する。
+2. `Run All Servers`を選択するとすべてのサーバが起動する(個別で起動もできる)。
+3. 停止するときは、1の手順と同じく「タスクの実行(Run Tasks)」の中からMySQLサーバの停止タスク``
 
 ### client
 
 Reactフロントエンドサーバ。ユーザ向けの画面を表示する。http://localhost:3000
 
-#### 初回環境構築手順
-1. client/.envを作成して、client/.env.local.exampleの内容をすべてコピペする
-2. clientディレクトリに移動して、`npm i`を実行。
 
 また、VSCodeだとブレークポイントを置いたデバッグが使える。  
 1. まずは、clilent(react)サーバを**起動**する。
@@ -40,9 +56,6 @@ Reactフロントエンドサーバ。ユーザ向けの画面を表示する。
 
 ExpressバックエンドAPIサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
 
-#### 初回環境構築手順
-1. backend/.envを作成して、backend/.env.local.exampleの内容をすべてコピペする
-2. backendディレクトリに移動して、`npm i`を実行。
 
 また、バックエンドも同様にブレークポイントでのデバッグができる。
 1. まずは、バックエンドサーバがすでに起動していれば**終了**する(clientとは手順が違うので注意)。

@@ -2,30 +2,30 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run All Servers",
+      "label": " 全てのローカルサーバ起動",
       "type": "shell",
-      "command": "echo client and backend server serving...",
+      "command": "echo サーバ起動中...",
       "dependsOrder": "parallel",
       "dependsOn": [
-        "Run Client Server",
-        "Run Backend Server",
-        "Run MySQL Server"
+        "クライアント(React)サーバ起動",
+        "バックエンド(API)サーバ起動(MySQLサーバとセットで起動すること)",
+        "MySQLサーバ起動"
       ],
       "problemMatcher": []
     },
     {
-      "label": "Run Client Server",
+      "label": "クライアント(React)サーバ起動",
       "type": "shell",
-      "command": "cd ${workspaceFolder}/client; npm start"
+      "command": "npm start --prefix=${workspaceFolder}\\client;"
     },
     {
-      "label": "Run Backend Server",
+      "label": "バックエンド(API)サーバ起動(MySQLサーバとセットで起動すること)",
       "type": "shell",
-      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
+      "command": "npx ts-node ${workspaceFolder}\\backend\\app\\App.ts",
       "problemMatcher": []
     },
     {
-      "label": "Run MySQL Server",
+      "label": "MySQLサーバ起動",
       "type": "docker-compose",
       "dockerCompose": {
         "up": {
@@ -34,7 +34,7 @@
           "services": ["db"]
         },
         "files": [
-          "${workspaceFolder}/reversi-db/docker-compose.yml",
+          "${workspaceFolder}\\reversi-db\\docker-compose.yml"
         ]
       },
       "presentation": {
@@ -48,14 +48,12 @@
       }
     },
     {
-      "label": "Exit MySQL Server",
+      "label": "MySQLサーバ終了",
       "type": "docker-compose",
       "dockerCompose": {
-        "down": {
-          "removeImages": "local"
-        },
+        "down": {},
         "files": [
-          "${workspaceFolder}/reversi-db/docker-compose.yml"
+          "${workspaceFolder}\\reversi-db\\docker-compose.yml"
         ]
       },
       "presentation": {
@@ -69,28 +67,102 @@
       }
     },
     {
-      "label": "First Build All Servers",
+      "label": "初回環境構築 全部セット(Windows)",
       "type": "shell",
+      "dependsOrder": "sequence",
       "dependsOn": [
-        "First Build Client Server",
-        "First Build Backend Server"
+        "初回環境構築-Reactサーバ(Windows)",
+        "初回環境構築-APIサーバ(Windows)",
+        "初回環境構築-DBサーバ",
+        "MySQLサーバ終了"
       ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": []
     },
     {
-      "label": "First Build Client Server",
+      "label": "初回環境構築 全部セット(Mac)",
       "type": "shell",
-      "command": [
-        "copy ${workspaceFolder}/client/.env.local.example ${workspaceFolder}/client/.env",
-        "npm ci --prefix=${workspaceFolder}/client"
-      ]
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "初回環境構築-Reactサーバ(Mac)",
+        "初回環境構築-APIサーバ(Mac)",
+        "初回環境構築-DBサーバ",
+        "MySQLサーバ終了"
+      ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": []
     },
     {
-      "label": "First Build Backend Server",
+      "label": "初回環境構築-DBサーバ",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}\\reversi-db; docker compose up -d --build",
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "初回環境構築-Reactサーバ(Windows)",
       "type": "shell",
       "command": [
-        "copy ${workspaceFolder}/client/.env.local.example ${workspaceFolder}/backend/.env",
-        "npm ci --prefix=${workspaceFolder}/backend"
-      ]
-    }
+        "copy ${workspaceFolder}\\client\\.env.local.example ${workspaceFolder}\\client\\.env;",
+        "npm ci --prefix=${workspaceFolder}\\client;"
+      ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "初回環境構築-Reactサーバ(Mac)",
+      "type": "shell",
+      "command": [
+        "cd ${workspaceFolder}\\client;",
+        "cp .env.local.example .env;",
+        "npm ci --prefix=${workspaceFolder}\\client;"
+      ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "初回環境構築-APIサーバ(Windows)",
+      "type": "shell",
+      "command": [
+        "copy ${workspaceFolder}\\backend\\.env.local.example ${workspaceFolder}\\backend\\.env;",
+        "npm ci --prefix=${workspaceFolder}\\backend;"
+      ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "初回環境構築-APIサーバ(Mac)",
+      "type": "shell",
+      "command": [
+        "cd ${workspaceFolder}\\backend;",
+        "cp .env.local.example .env;",
+        "npm ci --prefix=${workspaceFolder}\\backend;"
+      ],
+      "presentation": {
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
   ]
 }
