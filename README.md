@@ -25,7 +25,8 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 ...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に環境構築できる
 
 1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
-2. `Build All Dev-Env for Windows`を選択すると環境構築が始まる(MacOSの場合は、`Build All Dev-Env for Mac`を選択する)。
+2. `初回環境構築 全部セット(Windows)`を選択すると環境構築が始まる(MacOSの場合は、`初回環境構築 全部セット(Mac)`を選択する)。
+3. 「このタスクをスキャンせずに続行」的なやつを選択する。
 
 
 ### ローカルサーバ起動方法(2回目以降)
@@ -39,7 +40,7 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 
 1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
 2. `Run All Servers`を選択するとすべてのサーバが起動する(個別で起動もできる)。
-3. 停止するときは、1の手順と同じく「タスクの実行(Run Tasks)」の中からMySQLサーバの停止タスク``
+3. 停止するときは、1の手順と同じく「タスクの実行(Run Tasks)」の中からpostgresqlサーバの停止タスク``
 
 ### client
 
@@ -147,3 +148,4 @@ Material-UIのインストール
 - `npm i @types/sqlite3`
 - (参考)
   - (公式) https://github.com/TryGhost/node-sqlite3
+- 追記：sqliteではHerokuデプロイするのはリスクが高いので、普通にPostgreSQLに変更

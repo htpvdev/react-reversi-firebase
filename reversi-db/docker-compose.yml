@@ -1,18 +1,17 @@
-version: "3"
+version: '3'
 services:
   db:
-    image: mysql:8.0
-    volumes:
-      - db-store:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    image: postgres:13
     environment:
-      - MYSQL_DATABASE=dockerlocal
-      - MYSQL_USER=docker
-      - MYSQL_PASSWORD=secret
-      - MYSQL_ROOT_PASSWORD=secret
-      - TZ=Asia/Tokyo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 'secret'
+      POSTGRES_DB: 'react_reversi'
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - 3306:3306
+      - 5432:5432
+    container_name: reversi-db
+    volumes:
+      - db-store:/var/lib/postgresql/data
 
 volumes:
   db-store:

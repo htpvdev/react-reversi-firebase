@@ -8,8 +8,8 @@
       "dependsOrder": "parallel",
       "dependsOn": [
         "クライアント(React)サーバ起動",
-        "バックエンド(API)サーバ起動(MySQLサーバとセットで起動すること)",
-        "MySQLサーバ起動"
+        "バックエンド(API)サーバ起動(postgresqlサーバとセットで起動すること)",
+        "postgresqlサーバ起動"
       ],
       "problemMatcher": []
     },
@@ -19,19 +19,21 @@
       "command": "npm start --prefix=${workspaceFolder}\\client;"
     },
     {
-      "label": "バックエンド(API)サーバ起動(MySQLサーバとセットで起動すること)",
+      "label": "バックエンド(API)サーバ起動(postgresqlサーバとセットで起動すること)",
       "type": "shell",
       "command": "npx ts-node ${workspaceFolder}\\backend\\app\\App.ts",
       "problemMatcher": []
     },
     {
-      "label": "MySQLサーバ起動",
+      "label": "postgresqlサーバ起動",
       "type": "docker-compose",
       "dockerCompose": {
         "up": {
           "detached": true,
           "build": true,
-          "services": ["db"]
+          "services": [
+            "db"
+          ]
         },
         "files": [
           "${workspaceFolder}\\reversi-db\\docker-compose.yml"
@@ -48,7 +50,7 @@
       }
     },
     {
-      "label": "MySQLサーバ終了",
+      "label": "postgresqlサーバ終了",
       "type": "docker-compose",
       "dockerCompose": {
         "down": {},
@@ -74,7 +76,7 @@
         "初回環境構築-Reactサーバ(Windows)",
         "初回環境構築-APIサーバ(Windows)",
         "初回環境構築-DBサーバ",
-        "MySQLサーバ終了"
+        "postgresqlサーバ終了"
       ],
       "presentation": {
         "showReuseMessage": false,
@@ -91,7 +93,7 @@
         "初回環境構築-Reactサーバ(Mac)",
         "初回環境構築-APIサーバ(Mac)",
         "初回環境構築-DBサーバ",
-        "MySQLサーバ終了"
+        "postgresqlサーバ終了"
       ],
       "presentation": {
         "showReuseMessage": false,
@@ -108,7 +110,8 @@
         "showReuseMessage": false,
         "clear": false,
         "close": true
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "初回環境構築-Reactサーバ(Windows)",
@@ -163,6 +166,6 @@
         "clear": false,
         "close": true
       }
-    },
+    }
   ]
 }
