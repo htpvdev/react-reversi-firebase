@@ -2,26 +2,95 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run Client and Backend",
+      "label": "Run All Servers",
       "type": "shell",
       "command": "echo client and backend server serving...",
       "dependsOrder": "parallel",
       "dependsOn": [
-        "Run Client",
-        "Run Backend"
+        "Run Client Server",
+        "Run Backend Server",
+        "Run MySQL Server"
       ],
       "problemMatcher": []
     },
     {
-      "label": "Run Client",
+      "label": "Run Client Server",
       "type": "shell",
       "command": "cd ${workspaceFolder}/client; npm start"
     },
     {
-      "label": "Run Backend",
+      "label": "Run Backend Server",
       "type": "shell",
       "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
       "problemMatcher": []
+    },
+    {
+      "label": "Run MySQL Server",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "up": {
+          "detached": true,
+          "build": true,
+          "services": ["db"]
+        },
+        "files": [
+          "${workspaceFolder}/reversi-db/docker-compose.yml",
+        ]
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "Exit MySQL Server",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "down": {
+          "removeImages": "local"
+        },
+        "files": [
+          "${workspaceFolder}/reversi-db/docker-compose.yml"
+        ]
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      }
+    },
+    {
+      "label": "First Build All Servers",
+      "type": "shell",
+      "dependsOn": [
+        "First Build Client Server",
+        "First Build Backend Server"
+      ],
+    },
+    {
+      "label": "First Build Client Server",
+      "type": "shell",
+      "command": [
+        "copy ${workspaceFolder}/client/.env.local.example ${workspaceFolder}/client/.env",
+        "npm ci --prefix=${workspaceFolder}/client"
+      ]
+    },
+    {
+      "label": "First Build Backend Server",
+      "type": "shell",
+      "command": [
+        "copy ${workspaceFolder}/client/.env.local.example ${workspaceFolder}/backend/.env",
+        "npm ci --prefix=${workspaceFolder}/backend"
+      ]
     }
   ]
 }
