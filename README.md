@@ -31,16 +31,18 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 
 ### ローカルサーバ起動方法(2回目以降)
 
-フロントエンドサーバとバックエンドサーバの2つを起動する必要がある。
+フロントエンドサーバとバックエンドサーバ、DBサーバの3つを起動する必要がある。
 
 1. clientディレクトリに移動して、`npm start`を実行する。
-2. その後、backendディレクトリに移動して、`npx ts-node app/App.ts`
+2. backendディレクトリに移動して、`npx ts-node app/App.ts`を実行
+3. reversi-dbディレクトリに移動して、`docker compose up -d`を実行
 
 ...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に起動できる。
 
-1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Tasks)」という項目が出てくるので、それを選択
-2. `Run All Servers`を選択するとすべてのサーバが起動する(個別で起動もできる)。
-3. 停止するときは、1の手順と同じく「タスクの実行(Run Tasks)」の中からpostgresqlサーバの停止タスク``
+1. VSCodeで、F1キーなどでコマンドパレットを呼び出し、`>task`と入力すると、「タスクの実行(Run Task)」という項目が出てくるので、それを選択
+2. ` 全てのローカルサーバ起動`を実行するとすべてのサーバが起動する(個別で起動もできる)。
+3. 停止するときは、再度1の手順を行い、「タスクの実行(Run Task)」の中からpostgresqlサーバの停止タスク`postgresqlサーバ終了`を実行する。
+4. その後、コマンドパレットで`>task`と入力して、「タスクの終了(Terminate Task)」を選択し、「全てのタスクを終了」を実行する。
 
 ### client
 
@@ -51,11 +53,11 @@ Reactフロントエンドサーバ。ユーザ向けの画面を表示する。
 1. まずは、clilent(react)サーバを**起動**する。
 2. Ctrl + Shift + D でデバッグタブを開き、client(Debug)の実行ボタンを押すと、デバッグサーバが起動する。
 
-  (clientの実行ボタンを押すことで、clientサーバを起動できる)
+  (clientの実行ボタンを押すと、デバッグせずにclientサーバを起動できる。ただし、タスクやnpm startの方が高速)
 
 ### backend
 
-ExpressバックエンドAPIサーバ。sqliteデータソースからデータを取り出し、APIでフロントエンドにデータを供給する。http://localhost:4000
+ExpressバックエンドAPIサーバ。postgresqlのDBサーバと通信してデータを取得し、APIでフロントエンドにデータを供給する。http://localhost:4000
 
 
 また、バックエンドも同様にブレークポイントでのデバッグができる。
@@ -148,4 +150,20 @@ Material-UIのインストール
 - `npm i @types/sqlite3`
 - (参考)
   - (公式) https://github.com/TryGhost/node-sqlite3
-- 追記：sqliteではHerokuデプロイするのはリスクが高いので、普通にPostgreSQLに変更
+- 追記：sqliteではHerokuデプロイするのはリスクが高いので、普通にPostgreSQLに変更、npm uninstallでこのライブラリを削除した。
+
+バックエンド側で、sequelizeをインストール
+- sequelizeは、DBマイグレーション、ORM(モデルとかの機能)等をサポートしてくれて、様々なDBMSに対応している。最強。
+- (参考)https://sequelize.org/docs/v6/getting-started/
+  - `npm i sequelize`
+  - また、公式ドキュメントではDBMSごとの「ドライバ」のインストールが必要なので、インストール
+  - `npm i pg`
+  - `npm i pg-hstore`
+  - また、sequelizeのマイグレーションコマンドなどを実行するためのCLIをインストール
+  - `npm i sequelize-cli`
+
+### 【備忘】@types/～ から始まるパッケージについて
+
+- この記事に全部書いてある。
+- https://qiita.com/pepo/items/81e2b71b624633ba272e
+
