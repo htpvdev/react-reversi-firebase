@@ -165,6 +165,17 @@ Material-UIのインストール
   - `npx sequelize init`
   - .envに接続設定
   - (参考)https://qiita.com/murasuke/items/091066161aaff76db9be
+  - `npx sequelize-cli model:generate --name rv_room --attributes name:string,password:string --underscored`
+
+  - **sequelizeを取りやめました。**代わりに、TypeORMというパッケージを使うよう変更。以下のサイトを見て決断。
+    - (参考)https://qiita.com/tejitak/items/b6965380afd600db6513
+    - (参考)https://scrapbox.io/dojineko/Sequelize_から_TypeORM_に移行してみた
+  - typescriptの情報がなかったり、サイト通りやっても動かなかったり、いろんなサイト見たがうまくいかなかった。グッバイ、sequelize。
+
+バックエンド側にTypeORMのインストール
+  - (参考)https://typeorm.io/
+  - `npm i typeorm`
+
 
 
 ### 【備忘】@types/～ から始まるパッケージについて
