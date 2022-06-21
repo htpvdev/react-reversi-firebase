@@ -14,7 +14,7 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.0",
-    "sequelize-cli-typescript": "^3.2.0-c",
+    "sequelize-cli": "^6.4.1",
     "typescript": "^4.7.4"
   },
   "volta": {
