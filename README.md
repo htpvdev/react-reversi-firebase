@@ -159,8 +159,13 @@ Material-UIのインストール
   - また、公式ドキュメントではDBMSごとの「ドライバ」のインストールが必要なので、インストール
   - `npm i pg`
   - `npm i pg-hstore`
-  - また、sequelizeのマイグレーションコマンドなどを実行するためのCLIをインストール
-  - `npm i sequelize-cli`
+  - また、sequelizeのマイグレーションコマンドなどを実行するためのCLIをインストール(参考： https://qiita.com/cobot00/items/0bc0da1095e09bcd0d5f )
+  - `npm i sequelize-cli-typescript`
+  - DB接続の設定ファイル(config.json)等を生成する
+  - `npx sequelize init`
+  - .envに接続設定
+  - (参考)https://qiita.com/murasuke/items/091066161aaff76db9be
+
 
 ### 【備忘】@types/～ から始まるパッケージについて
 

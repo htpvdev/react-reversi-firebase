@@ -16,12 +16,12 @@
     {
       "label": "クライアント(React)サーバ起動",
       "type": "shell",
-      "command": "npm start --prefix=${workspaceFolder}\\client;"
+      "command": "npm start --prefix=${workspaceFolder}/client;"
     },
     {
       "label": "バックエンド(API)サーバ起動(postgresqlサーバとセットで起動すること)",
       "type": "shell",
-      "command": "npx ts-node ${workspaceFolder}\\backend\\app\\App.ts",
+      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
       "problemMatcher": []
     },
     {
@@ -36,7 +36,7 @@
           ]
         },
         "files": [
-          "${workspaceFolder}\\reversi-db\\docker-compose.yml"
+          "${workspaceFolder}/reversi-db/docker-compose.yml"
         ]
       },
       "presentation": {
@@ -55,7 +55,7 @@
       "dockerCompose": {
         "down": {},
         "files": [
-          "${workspaceFolder}\\reversi-db\\docker-compose.yml"
+          "${workspaceFolder}/reversi-db/docker-compose.yml"
         ]
       },
       "presentation": {
@@ -105,7 +105,7 @@
     {
       "label": "初回環境構築-DBサーバ",
       "type": "shell",
-      "command": "cd ${workspaceFolder}\\reversi-db; docker compose up -d --build",
+      "command": "cd ${workspaceFolder}/reversi-db; docker compose up -d --build",
       "presentation": {
         "showReuseMessage": false,
         "clear": false,
@@ -130,9 +130,9 @@
       "label": "初回環境構築-Reactサーバ(Mac)",
       "type": "shell",
       "command": [
-        "cd ${workspaceFolder}\\client;",
+        "cd ${workspaceFolder}/client;",
         "cp .env.local.example .env;",
-        "npm ci --prefix=${workspaceFolder}\\client;"
+        "npm ci --prefix=${workspaceFolder}/client;"
       ],
       "presentation": {
         "showReuseMessage": false,
@@ -157,9 +157,9 @@
       "label": "初回環境構築-APIサーバ(Mac)",
       "type": "shell",
       "command": [
-        "cd ${workspaceFolder}\\backend;",
+        "cd ${workspaceFolder}/backend;",
         "cp .env.local.example .env;",
-        "npm ci --prefix=${workspaceFolder}\\backend;"
+        "npm ci --prefix=${workspaceFolder}/backend;"
       ],
       "presentation": {
         "showReuseMessage": false,
