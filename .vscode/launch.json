@@ -11,13 +11,13 @@
       "name": "backend(Debug)",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npx ts-node ${workspaceFolder}/backend/app/App.ts",
+      "command": "npm start --prefix=${workspaceFolder}/backend",
     },
     { /** client */
       "name": "client",
       "type": "node-terminal",
       "request": "launch",
-      "command": "cd ${workspaceFolder}/client; npm start",
+      "command": "npm start --prefix=${workspaceFolder}/client",
     }
   ]
 }
