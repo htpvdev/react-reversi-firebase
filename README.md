@@ -64,6 +64,17 @@ ExpressバックエンドAPIサーバ。postgresqlのDBサーバと通信して�
 1. まずは、バックエンドサーバがすでに起動していれば**終了**する(clientとは手順が違うので注意)。
 2. Ctrl + Shift + D でデバッグタブを開き、backend(Debug)の実行ボタンを押すと、デバッグサーバが起動する。
 
+
+
+## 知見まとめ
+
+ES Modules == ESM (import/export)
+CommonJS   == CJS (require/module.exports)
+
+しばしば、対比の言葉として使われる
+
+
+
 ## やったことメモ
 
 Reactのインストールやってくれるやつ(create-react-app)のインストール
@@ -175,8 +186,26 @@ Material-UIのインストール
 バックエンド側にTypeORMのインストール
   - (参考)https://typeorm.io/
   - `npm i typeorm`
+  - (typeorm公式ドキュメントによると、typeorm以外にも、reflect-metadataというライブラリと、各DBMSごとのドライバもインストールしなくてはいけないらしい)
+  - typeormをインストールすると、cliツールも使えるらしい。初期設定用のコマンドを実行。以下のコマンド一つで、expressを初期設定済みでインストールしてくれるらしい。これをexpress入れる前に知っていれば…。さらに、デコレータ(@から始まるやつ)の構文を使えるようになるreflect-metadataというライブラリもインストールされる。
+  - `npx typeorm init --database postgres --express`
+  - モデルの使い方的なやつ参考： https://www.tabnine.com/code/javascript/functions/typeorm/Repository/findOne
 
 
+```
+import { Photo } from "./entity/Photo"
+import { AppDataSource } from "./index"
+
+const photo = new Photo()
+photo.name = "Me and Bears"
+photo.description = "I am near polar bears"
+photo.filename = "photo-with-bears.jpg"
+photo.views = 1
+photo.isPublished = true
+
+await AppDataSource.manager.save(photo)
+console.log("Photo has been saved. Photo id is", photo.id)
+```
 
 ### 【備忘】@types/～ から始まるパッケージについて
 
