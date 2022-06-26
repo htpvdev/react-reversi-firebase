@@ -34,7 +34,7 @@ Angular で、一度オセロの制作をしました。今度はReactで！
 フロントエンドサーバとバックエンドサーバ、DBサーバの3つを起動する必要がある。
 
 1. clientディレクトリに移動して、`npm start`を実行する。
-2. backendディレクトリに移動して、`npx ts-node app/App.ts`を実行
+2. backendディレクトリに移動して、`npm start`を実行
 3. reversi-dbディレクトリに移動して、`docker compose up -d`を実行
 
 ...とやってもいいが、一括でやってくれる「タスク」を作成したので、VSCodeであれば簡単に起動できる。
@@ -190,6 +190,12 @@ Material-UIのインストール
   - typeormをインストールすると、cliツールも使えるらしい。初期設定用のコマンドを実行。以下のコマンド一つで、expressを初期設定済みでインストールしてくれるらしい。これをexpress入れる前に知っていれば…。さらに、デコレータ(@から始まるやつ)の構文を使えるようになるreflect-metadataというライブラリもインストールされる。
   - `npx typeorm init --database postgres --express`
   - モデルの使い方的なやつ参考： https://www.tabnine.com/code/javascript/functions/typeorm/Repository/findOne
+  - マイグレーションのやり方については、こちらの神記事が教えてくれてる。
+  - https://qiita.com/qualitia_cdev/items/eb8f2c614c0435b9a120
+  - マイグレーションファイルを作成するには、以下のコマンドを実行する
+  typeorm migration:create ./カレントディレクトリからmigrationディレクトリまでのパス/マイグレーションファイル名
+  - マイグレーション実行は以下の通り
+  - `npx typeorm-ts-node-esm migration:run`
 
 
 ```

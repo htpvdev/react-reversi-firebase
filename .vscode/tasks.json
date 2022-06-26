@@ -74,8 +74,8 @@
       "dependsOrder": "sequence",
       "dependsOn": [
         "初回環境構築-Reactサーバ(Windows)",
-        "初回環境構築-APIサーバ(Windows)",
         "初回環境構築-DBサーバ",
+        "初回環境構築-APIサーバ(Windows)",
         "postgresqlサーバ終了"
       ],
       "presentation": {
@@ -91,8 +91,8 @@
       "dependsOrder": "sequence",
       "dependsOn": [
         "初回環境構築-Reactサーバ(Mac)",
-        "初回環境構築-APIサーバ(Mac)",
         "初回環境構築-DBサーバ",
+        "初回環境構築-APIサーバ(Mac)",
         "postgresqlサーバ終了"
       ],
       "presentation": {
@@ -145,7 +145,8 @@
       "type": "shell",
       "command": [
         "copy ${workspaceFolder}\\backend\\.env.local.example ${workspaceFolder}\\backend\\.env;",
-        "npm ci --prefix=${workspaceFolder}\\backend;"
+        "npm ci --prefix=${workspaceFolder}\\backend;",
+        "npm run migrate:reset --prefix=${workspaceFolder}\\backend;"
       ],
       "presentation": {
         "showReuseMessage": false,
@@ -159,7 +160,8 @@
       "command": [
         "cd ${workspaceFolder}/backend;",
         "cp .env.local.example .env;",
-        "npm ci --prefix=${workspaceFolder}/backend;"
+        "npm ci --prefix=${workspaceFolder}/backend;",
+        "npm run migrate:reset --prefix=${workspaceFolder}/backend;"
       ],
       "presentation": {
         "showReuseMessage": false,
