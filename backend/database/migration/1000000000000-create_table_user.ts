@@ -1,16 +1,15 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class CreateRvMatch1000000000000 implements MigrationInterface {
+export class CreateUser1000000000000 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `
-        CREATE TABLE IF NOT EXISTS "rv_match" (
+        CREATE TABLE IF NOT EXISTS "user" (
           "id" SERIAL PRIMARY KEY
-          , "black_user_id" INTEGER
-          , "white_user_id" INTEGER
-          , "current_board_json" VARCHAR(1000)
-          , "result" SMALLINT
+          , "name" VARCHAR(10)
+          , "email" VARCHAR(255)
+          , "password" VARCHAR(100)
         )
         ;
       `,
@@ -20,7 +19,7 @@ export class CreateRvMatch1000000000000 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `
-        DROP TABLE IF EXISTS "rv_match";
+        DROP TABLE IF EXISTS "user";
       `,
     )
   }

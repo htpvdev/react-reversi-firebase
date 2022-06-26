@@ -1,5 +1,6 @@
-import user from './user'
+import userRoutes from './userRoutes'
 
 export const Routes = [
-    ...user,
+    ...userRoutes,
+    
 ]

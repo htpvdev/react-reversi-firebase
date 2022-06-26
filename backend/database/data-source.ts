@@ -11,6 +11,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { CreateRvRoom1000000000000 } from './migration/1000000000000-create_table_rv_room';
 import { CreateRvMatch1000000000000 } from './migration/1000000000000-create_table_rv_match_table';
 import { CreateRvHistory1000000000000 } from './migration/1000000000000-create_table_rv_history';
+import { CreateUser1000000000000 } from './migration/1000000000000-create_table_user';
 
 
 export const MigrationDataSource = new DataSource({
@@ -24,6 +25,7 @@ export const MigrationDataSource = new DataSource({
   logging: true,
   entities: [],
   migrations: [
+    CreateUser1000000000000,
     CreateRvRoom1000000000000,
     CreateRvMatch1000000000000,
     CreateRvHistory1000000000000,

@@ -12,7 +12,7 @@ export class UserController {
 
     async one(request: Request, response: Response, next: NextFunction) {
         return this.userRepository.findOne({
-            select: ['id', 'age', 'firstName', 'lastName'],
+            select: ['id', 'name', 'email', 'password'],
             where: { id: Number(request.params.id) },
         })
     }

@@ -7,16 +7,18 @@ export class User {
     id: number
 
     @Column({
-        length: 100,
+        length: 10,
     })
-    firstName: string
+    name: string
+
+    @Column({
+        length: 255,
+    })
+    email: string
 
     @Column({
         length: 100,
     })
-    lastName: string
-
-    @Column()
-    age: number
+    password: string
 
 }
