@@ -1,4 +1,3 @@
-import { QueryRunner } from 'typeorm'
 import { MigrationDataSource } from '../data-source'
 
 MigrationDataSource.initialize().then(async () => {

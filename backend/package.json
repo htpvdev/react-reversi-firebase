@@ -7,8 +7,10 @@
     "start": "ts-node src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migrate:run": "ts-node database/script/Run.ts",
+    "migrate:run:seed": "ts-node database/script/Run.ts",
     "migrate:reset": "ts-node database/script/Reset.ts",
-    "migrate:revert": "ts-node database/script/Revert.ts"
+    "migrate:revert": "ts-node database/script/Revert.ts",
+    "migrate:seed": "ts-node database/script/Seeder.ts"
   },
   "dependencies": {
     "@types/express": "^4.17.13",
