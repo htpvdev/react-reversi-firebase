@@ -140,7 +140,7 @@ Material-UIのインストール
 2. backendディレクトリで、以下のパッケージをインストール
   - `npm i typescript`
   - `npm i @types/node`
-  - `npm i ts-node`
+  - `npm i -D ts-node` (ts-nodeはTypeScriptをコンパイルせずに実行するためのもの。本番環境には不要なので、-Dで本番環境にはインストールしない設定にする)
   - `npm i express`
 
 (参考)
