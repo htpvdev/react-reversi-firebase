@@ -11,15 +11,15 @@ export type Status = 'boot'|'playing'|'overed'
 export type PlayerType = 'player'|'cpu'
 
 /**  */
-export interface Setting {
-  player: Side,
-  status: Status,
-  black: { type: PlayerType, playerName: string, piece: number },
-  white: { type: PlayerType, playerName: string, piece: number },
+export type Setting = {
+  player: Side
+  status: Status
+  black: { type: PlayerType, playerName: string, piece: number }
+  white: { type: PlayerType, playerName: string, piece: number }
 }
 
 /**  */
-export interface Field {
+export type Field = {
   p00 : PieceSide, p01 : PieceSide, p02 : PieceSide, p03 : PieceSide, p04 : PieceSide, p05 : PieceSide, p06 : PieceSide, p07 : PieceSide,
   p10 : PieceSide, p11 : PieceSide, p12 : PieceSide, p13 : PieceSide, p14 : PieceSide, p15 : PieceSide, p16 : PieceSide, p17 : PieceSide,
   p20 : PieceSide, p21 : PieceSide, p22 : PieceSide, p23 : PieceSide, p24 : PieceSide, p25 : PieceSide, p26 : PieceSide, p27 : PieceSide,
@@ -41,26 +41,26 @@ export type FieldKey
   'p70' | 'p71' | 'p72' | 'p73' | 'p74' | 'p75' | 'p76' | 'p77'
 
 /**  */
-export interface ReversiType {
-  setting: Setting,
-  field: Field,
+export type ReversiType = {
+  setting: Setting
+  field: Field
 }
 
 /**  */
-export interface PieceInfo {
-  black: number,
-  white: number,
-  none: number,
+export type PieceInfo = {
+  black: number
+  white: number
+  none: number
 }
 
 /** */
-export interface FieldInfo {
-  field: Field,
-  turnedPieceCount: number,
+export type FieldInfo = {
+  field: Field
+  turnedPieceCount: number
 }
 
 /** */
-export interface PieceCount {
-  black: number,
-  white: number,
+export type PieceCount = {
+  black: number
+  white: number
 }
