@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.scss';
-import Welcome from './components/Welcome';
-import Reversi from './components/reversi/Reversi';
+import 'App.css';
+import Welcome from 'components/Welcome';
+import Reversi from 'components/reversi/Reversi';
 
 function App() {
   return (

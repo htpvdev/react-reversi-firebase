@@ -77,9 +77,6 @@ CommonJS   == CJS (require/module.exports)
 
 ## やったことメモ
 
-Reactのインストールやってくれるやつ(create-react-app)のインストール
-- `npm i -g create-react-app`
-
 アプリのインストール
 - `npx create-react-app . --template typescript`
 
@@ -197,6 +194,20 @@ Material-UIのインストール
   - マイグレーション実行は以下の通り
   - `npx typeorm-ts-node-esm migration:run`
 
+##### socket.ioを本腰入れて勉強していく
+
+- backendにsocket.ioのインストール
+- `npm i socket.io-client`
+- clientにsocket.ioのインストール
+- `npm i socket.io`
+
+- 公式ドキュメントを読んでいこう。
+  - https://socket.io
+    - 曰く、どうやら双方向通信にはWebSocketという技術規格があるらしく、これをそのまま使うためのnpmパッケージも
+      存在するらしい。Socket.ioは、より記述をシンプルにして実装できるらしいが、内部でWebSocketライブラリを使っているわけではないらしい。
+    - Socket.ioの、Websocketにない機能
+      - 自動再接続（いい感じにやってくれてる）
+      - 
 
 ```
 import { Photo } from "./entity/Photo"
@@ -217,4 +228,25 @@ console.log("Photo has been saved. Photo id is", photo.id)
 
 - この記事に全部書いてある。
 - https://qiita.com/pepo/items/81e2b71b624633ba272e
+
+
+
+### メモ
+
+今後の作業計画
+
+1. 部屋を作成して、知り合い同士で試合をするやつを作成
+
+2. マッチングシステムを作成
+  - 
+
+3. 戦績管理システムを作成
+
+4. レーティングシステムを作成
+
+5. レーティングによるマッチングの偏りを作成
+
+6. CPUサーバを作成
+
+7. 機械学習システムを作成
 

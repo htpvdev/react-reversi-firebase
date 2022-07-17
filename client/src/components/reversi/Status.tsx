@@ -1,6 +1,5 @@
-import React from "react"
-import { sideText } from "../common/reversiConst";
-import { Setting } from '../common/reversiTypes';
+import { sideText } from "components/common/reversiConst";
+import { Setting } from 'components/common/reversiTypes';
 
 const Status: React.FC<{setting: Setting}> = ({setting}) => {
 

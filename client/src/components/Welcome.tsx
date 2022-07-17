@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const { REACT_APP_BACKEND_URL } = process.env
 
 export default function Welcome() {
-  const [apiTest, setApitest] = React.useState({});
+  const [apiTest, setApitest] = useState({});
 
   useEffect(() => {
     // useEffect自体ではasyncの関数を受け取れないので内部で関数を定義して呼び出す。
@@ -17,7 +17,7 @@ export default function Welcome() {
       setApitest(responseJson);
     };
     fetchPost();
-}, []);
+  }, []);
 
 
   return (

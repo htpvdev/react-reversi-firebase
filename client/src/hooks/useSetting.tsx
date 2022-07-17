@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { firstSetting } from '../components/common/reversiConst';
+import { firstSetting } from 'components/common/reversiConst';
 
 export function useSetting() {
   const [setting, setSetting] = useState(firstSetting)

@@ -1,10 +1,11 @@
-import React, { useState } from "react"
-import './Board.scss'
-import { Field, FieldKey, Setting, Side } from '../common/reversiTypes';
-import { firstField } from '../common/reversiConst';
-import { ReversiAction } from "../../actions/reversiAction";
-import Piece from "./Piece";
+import { useState } from 'react';
+import './Board.css';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+
+import Piece from 'components/reversi/Piece';
+import { ReversiAction } from 'actions/reversiAction';
+import { firstField } from 'components/common/reversiConst';
+import { Field, FieldKey, Setting, Side } from 'components/common/reversiTypes';
 
 interface BoardProps {
   setting: Setting,
@@ -20,7 +21,7 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
 
   const action = new ReversiAction()
 
-  const [snackBarState, setSnackBarState] = React.useState({
+  const [snackBarState, setSnackBarState] = useState({
     open: false,
     vertical: 'top',
     horizontal: 'center',

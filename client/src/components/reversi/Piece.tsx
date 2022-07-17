@@ -1,6 +1,5 @@
-import React from "react"
-import { FieldKey } from "../common/reversiTypes"
-import './Piece.scss'
+import { FieldKey } from "components/common/reversiTypes"
+import 'components/reversi/Piece.css'
 
 interface PieceProps {
   onClick: () => void,

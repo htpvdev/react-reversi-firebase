@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Board from "./Board"
-import Status from "./Status"
-import { firstSetting } from '../common/reversiConst';
-import StartDialog from './StartDialog';
+import { useState } from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Board from "components/reversi/Board"
+import Status from "components/reversi/Status"
+import { firstSetting } from 'components/common/reversiConst';
+import StartDialog from 'components/reversi/StartDialog';
 
 export default function Reversi() {
 

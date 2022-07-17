@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { firstField, firstSetting } from '../components/common/reversiConst';
+import { firstField, firstSetting } from 'components/common/reversiConst';
 
 export const ReversiContext = createContext({
     setting: firstSetting,
