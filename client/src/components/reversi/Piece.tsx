@@ -1,5 +1,5 @@
-import { FieldKey } from "components/common/reversiTypes"
-import 'components/reversi/Piece.css'
+import { FieldKey } from 'components/common/reversiTypes';
+import 'components/reversi/Piece.css';
 
 interface PieceProps {
   onClick: () => void,
@@ -7,24 +7,23 @@ interface PieceProps {
   key: FieldKey
 }
 
-export default function Piece(props: PieceProps) {
+const Piece: React.FC<PieceProps> = ({ side, onClick }) => (
+  <td onClick={onClick}>
+    <div>
+      <svg
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+      >
+        <circle
+          className={side}
+          r="20"
+          cx="25"
+          cy="25"
+        />
+      </svg>
+    </div>
+  </td>
+);
 
-  return (
-    <td onClick={props.onClick}>
-      <div>
-        <svg
-          width="50"
-          height="50"
-          viewBox="0 0 50 50"
-        >
-          <circle
-            className={props.side}
-            r="20"
-            cx="25"
-            cy="25"
-          ></circle>
-        </svg>
-      </div>
-    </td>
-  )
-}
+export default Piece;

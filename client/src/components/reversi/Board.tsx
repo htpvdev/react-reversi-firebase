@@ -8,18 +8,17 @@ import { firstField } from 'components/common/reversiConst';
 import { Field, FieldKey, Setting, Side } from '../common/reversiTypes';
 
 interface BoardProps {
-  setting: Setting,
-  setSetting: (setting: Setting) => void
+  setting: Setting;
+  setSetting: (setting: Setting) => void;
 }
 
 const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
+  const [field, setField] = useState<Field>(firstField);
 
-  const [field, setField] = useState<Field>(firstField)
+  const pieceRowList: Array<JSX.Element> = [];
+  let pieceRow: Array<JSX.Element> = [];
 
-  const pieceRowList: Array<JSX.Element> = []
-  let pieceRow: Array<JSX.Element> = []
-
-  const action = new ReversiAction()
+  const action = new ReversiAction();
 
   const [snackBarState, setSnackBarState] = useState({
     open: false,
@@ -31,60 +30,62 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
   const { vertical, horizontal, open, alertMessage } = snackBarState;
 
   const putPieceAction = (field: Field, side: Side, y: number, x: number) => {
-    const fieldInfo = action.putPiece(field, side, y, x)
+    const fieldInfo = action.putPiece(field, side, y, x);
     if (fieldInfo.turnedPieceCount === 0) {
-      setSnackBarState({ ...snackBarState, open: true, alertMessage: 'ここにはおけません' });
+      setSnackBarState({
+        ...snackBarState,
+        open: true,
+        alertMessage: 'ここにはおけません',
+      });
     } else {
-      let { player } = setting
-      player!=='black'? player = 'black': player = 'white'
+      let { player } = setting;
+      player !== 'black' ? (player = 'black') : (player = 'white');
 
-      const {black, white} = setting
-      const pieceCount = action.countPieces(fieldInfo.field)
-      black.piece = pieceCount.black
-      white.piece = pieceCount.white
+      const { black, white } = setting;
+      const pieceCount = action.countPieces(fieldInfo.field);
+      black.piece = pieceCount.black;
+      white.piece = pieceCount.white;
 
-      setSetting({...setting, player, black, white})
+      setSetting({ ...setting, player, black, white });
       setField(fieldInfo.field);
     }
-  }
+  };
 
-  let key!: FieldKey
+  let key!: FieldKey;
 
   for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
-      key = 'p' + y + x as FieldKey
+      key = `p${y}${x}` as FieldKey;
       pieceRow.push(
         <Piece
           onClick={() => {
-            putPieceAction({ ...field }, setting.player, y, x)
+            putPieceAction({ ...field }, setting.player, y, x);
           }}
           side={field[key]}
           key={key}
-        />
-      )
+        />,
+      );
     }
 
-    pieceRowList.push(<tr key={y}>{pieceRow}</tr>)
-    pieceRow = []
+    pieceRowList.push(<tr key={y}>{pieceRow}</tr>);
+    pieceRow = [];
   }
 
   return (
     <>
       <table>
-        <tbody>
-          {pieceRowList}
-        </tbody>
+        <tbody>{pieceRowList}</tbody>
       </table>
 
       <Snackbar
         anchorOrigin={{ vertical, horizontal } as SnackbarOrigin}
         open={open}
-        onClose={() => setSnackBarState({ ...snackBarState, open: false})}
+        onClose={() => setSnackBarState({ ...snackBarState, open: false })}
         message={alertMessage}
         key={vertical + horizontal}
       />
     </>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;
