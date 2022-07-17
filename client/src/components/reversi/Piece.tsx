@@ -8,6 +8,7 @@ interface PieceProps {
 }
 
 const Piece: React.FC<PieceProps> = ({ side, onClick }) => (
+  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
   <td onClick={onClick}>
     <div>
       <svg width="50" height="50" viewBox="0 0 50 50">

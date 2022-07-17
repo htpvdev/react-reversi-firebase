@@ -29,8 +29,13 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
 
   const { vertical, horizontal, open, alertMessage } = snackBarState;
 
-  const putPieceAction = (field: Field, side: Side, y: number, x: number) => {
-    const fieldInfo = action.putPiece(field, side, y, x);
+  const putPieceAction = (
+    paamField: Field,
+    side: Side,
+    y: number,
+    x: number,
+  ) => {
+    const fieldInfo = action.putPiece(paamField, side, y, x);
     if (fieldInfo.turnedPieceCount === 0) {
       setSnackBarState({
         ...snackBarState,
@@ -39,7 +44,7 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
       });
     } else {
       let { player } = setting;
-      player !== 'black' ? (player = 'black') : (player = 'white');
+      player = player !== 'black' ? 'black' : 'white';
 
       const { black, white } = setting;
       const pieceCount = action.countPieces(fieldInfo.field);
@@ -53,8 +58,8 @@ const Board: React.FC<BoardProps> = ({ setting, setSetting }) => {
 
   let key!: FieldKey;
 
-  for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 8; x++) {
+  for (let y = 0; y < 8; y += 1) {
+    for (let x = 0; x < 8; x += 1) {
       key = `p${y}${x}` as FieldKey;
       pieceRow.push(
         <Piece

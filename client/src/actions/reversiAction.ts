@@ -7,6 +7,7 @@ import {
   PieceCount,
 } from '../components/common/reversiTypes';
 
+// eslint-disable-next-line import/prefer-default-export
 export class ReversiAction {
   private vectors: Array<{ y: number; x: number }> = [
     { y: 1, x: 0 },
@@ -26,14 +27,15 @@ export class ReversiAction {
     x: number,
   ): FieldInfo {
     let turnedPieceCount = 0;
-    if (field[(`p${  y  }${x}`) as FieldKey] !== 'none') {
+    if (field[`p${y}${x}` as FieldKey] !== 'none') {
       return { field, turnedPieceCount: 0 };
     }
+    // eslint-disable-next-line no-restricted-syntax
     for (const vector of this.vectors) {
       // 各ベクトル(方向)ごとの処理
       /** 何個、敵サイドのピースが連続するかの変数 */
       let enemyPieceCount = 0;
-      for (let vectorLength = 1; vectorLength < 8; vectorLength++) {
+      for (let vectorLength = 1; vectorLength < 8; vectorLength += 1) {
         if (
           y + vector.y * vectorLength >= 0 &&
           y + vector.y * vectorLength <= 7 &&
@@ -42,9 +44,9 @@ export class ReversiAction {
         ) {
           const pieceSide: PieceSide =
             field[
-              (`p${ 
-                y + vector.y * vectorLength 
-                }${x + vector.x * vectorLength}`) as FieldKey
+              `p${y + vector.y * vectorLength}${
+                x + vector.x * vectorLength
+              }` as FieldKey
             ];
 
           if (pieceSide === putSide) {
@@ -57,9 +59,11 @@ export class ReversiAction {
         }
       }
       if (enemyPieceCount > 0) {
+        // eslint-disable-next-line no-plusplus
         for (let v = 1; v <= enemyPieceCount; v++) {
           // ひっくり返す処理
-          field[(`p${  y + vector.y * v  }${x + vector.x * v}`) as FieldKey] =
+          // eslint-disable-next-line no-param-reassign
+          field[`p${y + vector.y * v}${x + vector.x * v}` as FieldKey] =
             putSide;
           turnedPieceCount += 1;
         }
@@ -67,15 +71,18 @@ export class ReversiAction {
     }
     if (turnedPieceCount > 0) {
       // 一つでもピースをひっくり返していた場合のみ、ピースを置いた場所にピースを置く
-      field[(`p${  y  }${x}`) as FieldKey] = putSide;
+      // eslint-disable-next-line no-param-reassign
+      field[`p${y}${x}` as FieldKey] = putSide;
     }
 
     return { field, turnedPieceCount };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public countPieces(field: Field): PieceCount {
     const res: PieceCount = { black: 0, white: 0 };
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const key of Object.keys(field)) {
       if (field[key as FieldKey] === 'black') {
         res.black += 1;

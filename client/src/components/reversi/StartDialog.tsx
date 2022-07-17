@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,15 +8,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef((
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) => <Slide direction="up" ref={ref} {...props} />);
+const Transition = forwardRef(
+  (
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>,
+  ) => <Slide direction="up" ref={ref} {...props} />,
+);
 
-export default function StartDialog() {
-  const [open, setOpen] = React.useState(false);
+const StartDialog: React.FC = () => {
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,4 +51,6 @@ export default function StartDialog() {
       </Dialog>
     </div>
   );
-}
+};
+
+export default StartDialog;
