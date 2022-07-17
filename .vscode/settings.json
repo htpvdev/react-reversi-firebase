@@ -6,7 +6,8 @@
     "**/.DS_Store": true,
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "editor.formatOnSave": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -17,6 +18,9 @@
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "./client/node_modules/typescript/lib",
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
   "[graphql]": {
     "editor.formatOnSave": true
   },

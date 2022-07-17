@@ -1,9 +1,10 @@
-td, th {
+td,
+th {
   border: solid 3px;
-  }
+}
 
 table {
-  border-collapse:  collapse;
+  border-collapse: collapse;
 }
 
 td {
@@ -11,7 +12,7 @@ td {
 }
 
 td:hover {
-  background-color: rgb(2, 134, 2);
+  background-color: rgb(2 134 2);
 }
 
 /* .black:hover, .white:hover {

@@ -28,6 +28,7 @@ module.exports = {
     '@typescript-eslint',
     'import',
     'jsx-a11y',
+    'prefer-arrow',
     'react',
     'react-hooks',
   ],
@@ -35,9 +36,7 @@ module.exports = {
   rules: {
     // occur error in `import React from 'react'` with react-scripts 4.0.1
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': [
-      'error',
-    ],
+    '@typescript-eslint/no-use-before-define': ['error'],
     'lines-between-class-members': [
       'error',
       'always',
@@ -62,11 +61,11 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
-        'vars': 'all',
-        'args': 'after-used',
-        'argsIgnorePattern': '_',
-        'ignoreRestSiblings': false,
-        'varsIgnorePattern': '_',
+        vars: 'all',
+        args: 'after-used',
+        argsIgnorePattern: '_',
+        ignoreRestSiblings: false,
+        varsIgnorePattern: '_',
       },
     ],
     'import/extensions': [
@@ -94,17 +93,19 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
-    'react/function-component-definition': [
-      2,
+    'prefer-arrow/prefer-arrow-functions': [
+      'error',
       {
-        namedComponents: 'arrow-function',
-      }
-    ]
+        disallowPrototype: true,
+        singleReturnOnly: false,
+        classPropertiesAllowed: false,
+      },
+    ],
   },
   overrides: [
     {
-      'files': ['*.tsx'],
-      'rules': {
+      files: ['*.tsx'],
+      rules: {
         'react/prop-types': 'off',
       },
     },
