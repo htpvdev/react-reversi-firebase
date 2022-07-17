@@ -4,5 +4,16 @@
     "**/__**": true,
     "**/node_modules": true,
     "**/.DS_Store": true,
-  }
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "eslint.packageManager": "npm",
+  "eslint.workingDirectories": [
+    "./client",
+    "./backend"
+  ],
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "./client/node_modules/typescript/lib"
 }
