@@ -11,13 +11,8 @@ const Reversi: React.FC = () => {
 
   return (
     <>
-      {setting.status === 'boot' ? (<StartDialog />) : null}
-      <Button
-        variant="contained"
-        color="primary"
-        component={Link}
-        to="/"
-      >
+      {setting.status === 'boot' ? <StartDialog /> : null}
+      <Button variant="contained" color="primary" component={Link} to="/">
         TOPへ戻る
       </Button>
       <Status setting={setting} />

@@ -101,6 +101,7 @@ module.exports = {
         classPropertiesAllowed: false,
       },
     ],
+    'react/function-component-definition': 'off',
   },
   overrides: [
     {

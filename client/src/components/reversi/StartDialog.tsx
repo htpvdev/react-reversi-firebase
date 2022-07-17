@@ -8,14 +8,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef(function Transition(
+const Transition = React.forwardRef((
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
   },
   ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+) => <Slide direction="up" ref={ref} {...props} />);
 
 export default function StartDialog() {
   const [open, setOpen] = React.useState(false);
@@ -42,8 +40,7 @@ export default function StartDialog() {
       >
         <DialogTitle>オセロを開始します</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description"></DialogContentText>
-
+          <DialogContentText id="alert-dialog-slide-description" />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>TOPに戻る</Button>

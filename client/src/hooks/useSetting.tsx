@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { firstSetting } from 'components/common/reversiConst';
 
 export function useSetting() {
-  const [setting, setSetting] = useState(firstSetting)
+  const [setting, setSetting] = useState(firstSetting);
 
   useEffect(() => {
-    setSetting(setting)
-  })
+    setSetting(setting);
+  });
 
-  return setting
+  return setting;
 }
