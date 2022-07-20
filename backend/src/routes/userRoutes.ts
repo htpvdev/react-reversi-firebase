@@ -1,4 +1,4 @@
-import { UserController } from '../controller/UserController'
+import { UserController } from '../controller/UserController';
 
 const userRoutes = [
   {
@@ -14,10 +14,10 @@ const userRoutes = [
     action: 'one',
   },
   {
-      method: 'post',
-      route: '/users',
-      controller: UserController,
-      action: 'save',
+    method: 'post',
+    route: '/users',
+    controller: UserController,
+    action: 'save',
   },
   {
     method: 'delete',
@@ -25,6 +25,6 @@ const userRoutes = [
     controller: UserController,
     action: 'remove',
   },
-]
+];
 
-export default userRoutes
+export default userRoutes;
