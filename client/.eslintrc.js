@@ -103,14 +103,14 @@ module.exports = {
     ],
     'react/function-component-definition': 'off',
   },
-  overrides: [
-    {
-      files: ['*.tsx'],
-      rules: {
-        'react/prop-types': 'off',
-      },
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: ['*.tsx'],
+  //     rules: {
+  //       'react/prop-types': 'off',
+  //     },
+  //   },
+  // ],
   settings: {
     'import/resolver': {
       node: {
