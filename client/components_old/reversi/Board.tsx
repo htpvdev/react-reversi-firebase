@@ -3,7 +3,7 @@ import './Board.css';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
 import Piece from 'components/reversi/Piece';
-import { ReversiAction } from 'actions/reversiAction';
+import { ReversiAction } from 'components_old/actions/reversiAction';
 import { firstField } from 'components/common/reversiConst';
 import { Field, FieldKey, Setting, Side } from '../common/reversiTypes';
 
