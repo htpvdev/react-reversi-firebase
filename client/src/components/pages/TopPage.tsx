@@ -1,11 +1,12 @@
-import { Button, Container, Typography } from '@mui/material';
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Container, Typography } from '@mui/material';
 
-const TopPage: FC<{ setTitle: (title: string | null) => void }> = ({
-  setTitle,
-}) => {
-  setTitle('Classic Games Arina');
+import { useDispatch } from 'react-redux';
+import { commonSlice } from 'redux/common';
+
+const TopPage: React.FC = () => {
+  const { setPageTitle } = commonSlice.actions;
+  useDispatch()(setPageTitle('Classic Games Arina'));
 
   return (
     <Container sx={{ textAlign: 'center', py: 5 }}>

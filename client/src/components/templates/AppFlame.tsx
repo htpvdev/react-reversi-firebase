@@ -1,3 +1,6 @@
+import { FC, ReactElement, useState } from 'react';
+
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Box,
@@ -10,18 +13,21 @@ import {
   FormControlLabel,
   Switch,
 } from '@mui/material';
-import ThemeProviderSwitch from 'components/atoms/ThemeProviderSwitch';
-import { FC, ReactElement, useState } from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AccountCircle } from '@mui/icons-material';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import { Link } from 'react-router-dom';
+import { AccountCircle } from '@mui/icons-material';
 
-// eslint-disable-next-line react/require-default-props
-const AppFlame: FC<{ title: string | null; children?: ReactElement }> = ({
-  title,
-  children,
-}) => {
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+
+import ThemeProviderSwitch from 'components/atoms/ThemeProviderSwitch';
+
+type Props = { children: ReactElement };
+
+const AppFlame: FC<Props> = ({ children }) => {
+  const pageTitle = useSelector((state: RootState) => state.common.pageTitle);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isLight, setIsLight] = useState<boolean>(true);
   // const [isLight] = useState<boolean>(false);
@@ -33,9 +39,6 @@ const AppFlame: FC<{ title: string | null; children?: ReactElement }> = ({
   // const handleClose = () => {
   //   setAnchorEl(null);
   // };
-
-  // eslint-disable-next-line no-console
-  console.log(anchorEl);
 
   return (
     <ThemeProviderSwitch light={isLight}>
@@ -116,9 +119,9 @@ const AppFlame: FC<{ title: string | null; children?: ReactElement }> = ({
           </Toolbar>
         </AppBar>
         <Container sx={{ textAlign: 'center' }}>
-          {title && (
+          {pageTitle && (
             <Typography p={5} fontSize="100px">
-              {title}
+              {pageTitle}
             </Typography>
           )}
         </Container>

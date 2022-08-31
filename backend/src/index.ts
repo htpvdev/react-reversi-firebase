@@ -41,6 +41,66 @@ const io = new Server(server, {
 // });
 io.on('connection', (socket) => {
   console.log('connection called.');
+
+  socket.on('createRoom', async () => {
+    const rooms = io.of('/').adapter.rooms.keys();
+    for (const room of rooms) {
+      if (room != socket.id) {
+        console.log(`[${room}] is not [${socket.id}]`);
+        await socket.leave(room);
+      }
+    }
+
+    const roomNumber = `000${String(
+      Math.floor(Math.random() * 10000 - 1),
+    )}`.slice(-4);
+    console.log(io.of('/').adapter.rooms.keys());
+    console.log(`new roomNumber is ${roomNumber}`);
+
+    await socket.join(roomNumber);
+    socket.emit('roomCreated', roomNumber);
+  });
+
+  socket.on('quitRoom', async () => {
+    const rooms = io.of('/').adapter.rooms.keys();
+    for (const room of rooms) {
+      if (room != socket.id) {
+        console.log(`[${room}] is not [${socket.id}]`);
+        await socket.leave(room);
+      }
+    }
+    console.log(io.of('/').adapter.rooms.keys());
+  });
+
+  socket.on('applyJoinRoom', (roomNumber: string, userStatus) => {
+    console.log(`he want to be joined [${roomNumber}] Room.`);
+    socket.join(`${String(roomNumber)}-waiting`);
+    socket.to(String(roomNumber)).emit('askJoinRoom', userStatus);
+  });
+
+  socket.on('answerApplyJoinRoom', async (canJoin: boolean) => {
+    console.log('answerApplyJoinRoom called.');
+    const rooms = io.of('/').adapter.rooms.keys();
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const room of rooms) {
+      if (room !== socket.id) {
+        if (canJoin) {
+          console.log(`you joinned [${room}`);
+          socket.to(`${room}-waiting`).socketsJoin(room);
+          // eslint-disable-next-line no-await-in-loop
+          await socket.leave(`${room}-waiting`);
+          socket.to(room).emit('startGame');
+        } else {
+          console.log(`you kicked [${room}]`);
+          socket.to(`${room}-waiting`).emit('kickedRoom');
+          // eslint-disable-next-line no-await-in-loop
+          await socket.leave(`${room}-waiting`);
+        }
+      }
+    }
+  });
+
   socket.on('sendChat', (msg) => {
     console.log('sendChat called.');
     io.emit('recieveChat', msg);

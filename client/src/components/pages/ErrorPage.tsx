@@ -1,11 +1,11 @@
-import { Button, Container, Typography } from '@mui/material';
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Container, Typography } from '@mui/material';
+import { commonSlice } from 'redux/common';
+import { useDispatch } from 'react-redux';
 
-const ErrorPage: FC<{ setTitle: (title: string | null) => void }> = ({
-  setTitle,
-}) => {
-  setTitle('Error');
+const ErrorPage: React.FC = () => {
+  const { setPageTitle } = commonSlice.actions;
+  useDispatch()(setPageTitle('Error'));
 
   return (
     <Container sx={{ textAlign: 'center', p: 5 }}>

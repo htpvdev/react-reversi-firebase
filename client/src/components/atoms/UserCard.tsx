@@ -21,7 +21,9 @@ const cardColorList: CardColor[] = [
   'warning',
 ];
 
-const UserCard: FC<{ userStatus: UserStatus }> = ({ userStatus }) => {
+type Props = { userStatus: UserStatus | null };
+
+const UserCard: FC<Props> = ({ userStatus }) => {
   const [cardColor, setCardColor] = useState<CardColor>(
     cardColorList[Math.floor(Math.random() * 6)],
   );
@@ -42,10 +44,12 @@ const UserCard: FC<{ userStatus: UserStatus }> = ({ userStatus }) => {
     >
       <AccountCircle fontSize="large" sx={{ marginRight: 'auto' }} />
       <Typography fontSize={30} sx={{ px: 3 }}>
-        {userStatus.type === 'guest' ? 'ゲスト' : `Lv ${String(userStatus.lv)}`}
+        {userStatus?.type === 'guest'
+          ? 'ゲスト'
+          : `Lv ${String(userStatus?.lv)}`}
       </Typography>
       <Typography fontSize={30} sx={{ px: 3 }} flexGrow={1}>
-        {userStatus.userName}
+        {userStatus?.userName}
       </Typography>
     </Button>
   );

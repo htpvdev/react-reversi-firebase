@@ -1,11 +1,12 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Grid, Typography } from '@mui/material';
 
-const GamePage: FC<{ setTitle: (title: string | null) => void }> = ({
-  setTitle,
-}) => {
-  setTitle('Games');
+import { useDispatch } from 'react-redux';
+import { commonSlice } from 'redux/common';
+
+const GamePage: React.FC = () => {
+  const { setPageTitle } = commonSlice.actions;
+  useDispatch()(setPageTitle('Games'));
 
   return (
     <Grid container textAlign="center">
@@ -50,7 +51,7 @@ const GamePage: FC<{ setTitle: (title: string | null) => void }> = ({
           to="/gobblet"
           disabled
         >
-          <Typography fontSize="75px">
+          <Typography fontSize="50px">
             ゴブレット
             <br />
             ゴブラーズ

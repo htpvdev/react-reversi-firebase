@@ -1,10 +1,12 @@
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import DialogContentText from '@mui/material/DialogContentText';
+import { Socket } from 'socket.io-client';
 
 type Props = {
-  roomNumber: string;
+  roomNumber: string | null;
   connecting: boolean;
+  getSocket: () => Socket;
 };
 
 const buttonColorList = [
@@ -25,10 +27,18 @@ type ButtonColor =
   | 'info'
   | 'warning';
 
-const RoomMatchDialogWaiting: FC<Props> = ({ roomNumber, connecting }) => {
+const RoomMatchDialogWaiting: FC<Props> = ({
+  roomNumber,
+  connecting,
+  getSocket,
+}) => {
   const [roomNumberColor, setRoomNumberColor] = useState(
     buttonColorList[Math.floor(Math.random() * 6)],
   );
+
+  useEffect(() => {
+    getSocket().emit('createRoom');
+  }, []);
 
   useEffect(() => {
     setRoomNumberColor(buttonColorList[Math.floor(Math.random() * 6)]);
@@ -50,7 +60,7 @@ const RoomMatchDialogWaiting: FC<Props> = ({ roomNumber, connecting }) => {
       </Box>
       <DialogContentText fontSize={30} py={3}>
         ※対戦相手に部屋番号を伝えてください
-        <Button>
+        <Button onClick={() => getSocket().emit('createRoom')}>
           <Typography fontSize={20}>部屋番号を変更</Typography>
         </Button>
       </DialogContentText>
