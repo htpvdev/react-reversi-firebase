@@ -1,7 +1,7 @@
 build/
 public/
 **/coverage/
-**/node_modules/
+node_modules/
 **/*.min.js
 *.config.js
 .*lintrc.js

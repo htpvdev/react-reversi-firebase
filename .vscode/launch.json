@@ -7,12 +7,6 @@
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/client",
     },
-    { /** backend(Serve and Debug) */
-      "name": "backend(Debug)",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npm start --prefix=${workspaceFolder}/backend",
-    },
     { /** client */
       "name": "client",
       "type": "node-terminal",
