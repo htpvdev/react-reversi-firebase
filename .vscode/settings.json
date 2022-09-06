@@ -13,10 +13,10 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.packageManager": "npm",
   "eslint.workingDirectories": [
-    "./client",
+    "./",
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "./client/node_modules/typescript/lib",
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,

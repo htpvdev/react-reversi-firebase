@@ -2,16 +2,16 @@
   "configurations": [
     { /** client(Attach Debugger) */
       "name": "client(Debug)",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/client",
+      "webRoot": "${workspaceFolder}",
     },
     { /** client */
       "name": "client",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npm start --prefix=${workspaceFolder}/client",
+      "command": "npm start --prefix=${workspaceFolder}",
     }
   ]
 }
